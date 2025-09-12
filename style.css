@@ -696,6 +696,22 @@ blockquote {
     }
 }
 
+@media (max-width: 345px) {
+    #neon-timer {
+        font-size: 2rem;
+    }
+    #music-btn {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    #castle #table {
+        width: 80vw;
+        height: 80vw;
+        margin-left: 3.7rem;
+        margin-top: 4rem;
+    }
+}
+
 @media (max-width: 341px) {
     #neon-timer {
         font-size: 2rem;
