@@ -1,0 +1,720 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hover-animation {
+    animation: hover 1.75s ease-in-out infinite;
+}
+
+:root {
+    --color-primary: hsl(310, 100%, 65%);
+    --color-secondary: hsl(160, 100%, 65%);
+    --background: hsl(230, 30%, 15%);
+    --text: hsl(310, 100%, 95%);
+}
+
+#music-btn {
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: brown; /* same base as flower petal */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 25px #e8b2ca;
+    animation: syncGlow 3s ease-in-out infinite;
+    transition: transform 0.2s, background 0.3s;
+}
+
+#music-btn:hover {
+    background: brown; /* darker shade on hover */
+}
+
+/* synced glow animation */
+@keyframes syncGlow {
+    0% {
+        box-shadow: 0 0 25px brown;
+    }
+    50% {
+        box-shadow: 0 0 45px brown;
+    }
+    100% {
+        box-shadow: 0 0 25px brown;
+    }
+}
+
+
+blockquote {
+    border-left: 5px solid;
+    margin-left: 0;
+    padding: 1rem 0 1rem;
+    font-size: 2rem;
+    text-align: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(
+            35deg,
+            var(--color-primary),
+            var(--color-secondary)
+    );
+
+    p {
+        margin: 0;
+    }
+}
+
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* allow clicks on hearts individually */
+}
+
+.hearts{
+    span{
+        position: absolute;
+        font-size: 20px;
+        color: black;
+        left: 20px;
+        top: 10px;
+    }
+}
+
+.heart {
+    position: absolute;
+    pointer-events: auto; /* enable click on each heart */
+}
+
+.heart i {
+    font-size: 50px;
+    color: brown;
+    text-shadow: 0 0 10px #e8b2ca, 0 0 20px #e8b2ca;
+    animation: floatHeart 4s ease-in-out infinite;
+    cursor: pointer;
+}
+
+@keyframes floatHeart {
+    0% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(var(--x), var(--y)) scale(1.2); }
+    100% { transform: translate(0,0) scale(1); }
+}
+
+.heart:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+}
+
+@keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.snowflake {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fallSnow linear infinite;
+}
+
+/* Анимация с легким колебанием */
+@keyframes fallSnow {
+    0% {
+        transform: translate(0,0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(5px, 25px) rotate(90deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-5px, 50px) rotate(180deg);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(3px, 75px) rotate(270deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(0, 100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Modal Background */
+.modal {
+    display: none; /* hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Content */
+.modal-content {
+    background: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 30px #e8b2ca;
+}
+
+/* Close Button */
+.modal .close {
+    color: #333;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+.modal .close:hover {
+    color: #c82b60;
+}
+
+.text-container span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    text-align: center;
+}
+
+.text-container span.active {
+    opacity: 1;
+}
+
+@keyframes fadeText {
+    0%   { opacity: 0; }
+    5%   { opacity: 1; }
+    45%  { opacity: 1; }
+    50%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+#castle {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(#293c4d, #001920);
+    overflow: hidden;
+}
+#castle #table {
+    position: absolute;
+    left: calc(50% - 200px);
+    top: calc(50% - 50px);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(#a3727e, #af7279, #a16674);
+    border-radius: 100%;
+    border-bottom: 80px solid #623c53;
+    transform: scaleY(0.225);
+}
+#castle .shade-wrap {
+    position: absolute;
+    left: calc(50% - 100px);
+    top: calc(52% - 250px);
+    width: 200px;
+    height: 400px;
+}
+#castle .shade-wrap #shade-main {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    width: 160px;
+    height: 300px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+    border-top-left-radius: 50% 30%;
+    border-top-right-radius: 50% 30%;
+    border-bottom: none;
+    transform: perspective(200px) rotateX(8deg) scale(1.075, 1);
+}
+#castle .shade-wrap #shade-main #shade-handle-big {
+    position: absolute;
+    left: 55px;
+    top: -14px;
+    width: 50px;
+    height: 30px;
+    border-radius: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    transform: scaleY(0.9);
+}
+#castle .shade-wrap #shade-main #shade-handle-small {
+    position: absolute;
+    left: 70px;
+    top: -33px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: none;
+}
+#castle .shade-wrap #shade-main #bottom-shade {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    height: 40px;
+    transform: scaleY(0.5);
+    border-radius: 100%;
+    background: radial-gradient(#d287a5, #da9db6, #985e74);
+    animation: floatAnimate 1.75s ease-in-out infinite;
+}
+#castle .shade-wrap #shade-main-reflections {
+    position: relative;
+    left: 20px;
+    top: 100px;
+    width: 160px;
+    height: 300px;
+    border-top-left-radius: 50% 30%;
+    border-top-right-radius: 50% 30%;
+    border-bottom: none;
+    background-color: #6d6179;
+    transform: perspective(200px) rotateX(8deg) scale(1.075, 1);
+    opacity: 0.15;
+}
+#castle .shade-wrap #shade-main-reflections:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 50% 30%;
+    border-right: 20px solid rgba(255, 255, 255, 0.5);
+    transform: scale(0.7, 0.85);
+    filter: blur(5px);
+}
+#castle .shade-wrap #shade-main-reflections:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 50% 30%;
+    border-left: 8px solid rgba(255, 255, 255, 0.6);
+    transform: scale(0.85, 0.85);
+    filter: blur(5px);
+}
+#castle .shade-wrap #flower-wrap {
+    position: relative;
+    top: -50px;
+}
+#castle .shade-wrap #flower-wrap #stem {
+    position: absolute;
+    left: 82px;
+    top: 187px;
+    width: 100px;
+    height: 150px;
+    background-color: transparent;
+    border: solid 4px #a1b965;
+    border-color: transparent transparent transparent #a1b965;
+    border-radius: 50%/120px 100px 0 0;
+    transform: rotate(-3deg) scale(1.1, 0.9);
+}
+#castle .shade-wrap #flower-wrap #petal1 {
+    position: absolute;
+    left: 97px;
+    top: 188px;
+    width: 25px;
+    height: 25px;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 10%;
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+    background-color: #e00d0d;
+    box-shadow: 1px -1px 1px 0 #6f1232;
+    transform: rotate(32deg) scale(1.6, 1.6);
+}
+#castle .shade-wrap #flower-wrap #petal1:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 10%;
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+    background-color: transparent;
+    box-shadow: 0 0 10px 0 #e8b2ca;
+    opacity: 0.9;
+}
+#castle .shade-wrap #flower-wrap #petal1:after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 10%;
+    border-bottom-left-radius: 50% 40%;
+    border-bottom-right-radius: 50% 40%;
+    background-color: transparent;
+    box-shadow: 0 0 35px 0 #e8b2ca;
+    animation: glow 3s ease-in-out infinite;
+}
+#castle .shade-wrap #flower-wrap #petal2 {
+    position: absolute;
+    left: 85px;
+    top: 185px;
+    width: 25px;
+    height: 30px;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 50% 10%;
+    background-color: #e00d0d;
+    transform: rotate(35deg) scale(1.2, 1);
+    box-shadow: 1px -1px 1px 0 #6f1232;
+    opacity: 0.9;
+}
+#castle .shade-wrap #flower-wrap #petal3 {
+    position: absolute;
+    left: 105px;
+    top: 197px;
+    width: 25px;
+    height: 28px;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 10% 10%;
+    border-bottom-left-radius: 10% 10%;
+    border-bottom-right-radius: 50% 50%;
+    background-color: #e00d0d;
+    transform: rotate(25deg) scale(1, 1.05) skew(-8deg);
+    box-shadow: 1px -1px 1px 0 #6f1232;
+    opacity: 0.9;
+}
+#castle .shade-wrap #flower-wrap #petal4 {
+    position: absolute;
+    left: 80px;
+    top: 191px;
+    width: 25px;
+    height: 25px;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 50% 10%;
+    background-color: #e00d0d;
+    transform: rotate(30deg) scale(1.1, 0.9) skew(10deg);
+    box-shadow: 1px -1px 1px 0 #a53d60;
+    opacity: 0.9;
+}
+#castle .shade-wrap #flower-wrap #petal5 {
+    position: absolute;
+    left: 105px;
+    top: 207px;
+    width: 25px;
+    height: 20px;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 10% 10%;
+    border-bottom-left-radius: 10% 10%;
+    border-bottom-right-radius: 50% 50%;
+    background-color: #e00d0d;
+    transform: rotate(28deg) scale(1, 1.05) skew(-18deg);
+    box-shadow: 1px -1px 1px 0 #a53d60;
+    opacity: 0.9;
+}
+#castle .shade-wrap #flower-wrap #falling-petal {
+    position: absolute;
+    left: 105px;
+    top: 209px;
+    width: 22px;
+    height: 18px;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 10% 10%;
+    border-bottom-left-radius: 10% 10%;
+    border-bottom-right-radius: 50% 50%;
+    background-color: #e00d0d;
+    transform: rotate(32deg) scale(0.9, 0.95) skew(-18deg);
+    box-shadow: 1px -1px 1px 0 #a53d60;
+    opacity: 0.9;
+    animation: 7s fall 4s ease-in-out infinite;
+}
+#castle .shade-wrap #flower-wrap #leaf1 {
+    position: absolute;
+    left: 75px;
+    top: 225px;
+    width: 13px;
+    height: 20px;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 50% 10%;
+    background-color: #91c423;
+    transform: rotate(5deg);
+}
+#castle .shade-wrap #flower-wrap #leaf2 {
+    position: absolute;
+    left: 82px;
+    top: 265px;
+    width: 12px;
+    height: 16px;
+    border-top-left-radius: 50% 10%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 50% 10%;
+    background-color: #91c423;
+    transform: rotate(-97deg);
+}
+
+.dustDef {
+    position: absolute;
+    background-color: white;
+    border-radius: 100%;
+    box-shadow: 0 0 3px 1px white;
+    opacity: 0;
+}
+
+@keyframes hover {
+    0% {
+        margin-top: 60px;
+    }
+    50% {
+        margin-top: 50px;
+    }
+    100% {
+        margin-top: 60px;
+    }
+}
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 25px 0 #e8b2ca;
+    }
+    50% {
+        box-shadow: 0 0 45px 0 #e8b2ca;
+    }
+    100% {
+        box-shadow: 0 0 25px 0 #e8b2ca;
+    }
+}
+@keyframes fall {
+    5% {
+        top: 209px;
+        left: 105px;
+        transform: rotate(55deg) scale(0.9, 0.95) skew(-18deg);
+        opacity: 0.9;
+    }
+    30% {
+        left: 90px;
+    }
+    55% {
+        left: 130px;
+    }
+    60%, 100% {
+        top: 380px;
+        transform: rotate(30deg) scale(0.9, 0.95) skew(-32deg);
+        opacity: 0;
+    }
+}
+@keyframes floatAnimate {
+    0% {
+        background-size: 105% 120%;
+        background-position: 0 0;
+        opacity: 0.7;
+    }
+    50% {
+        background-size: 100% 100%;
+        background-position: 0 0;
+        opacity: 0.5;
+    }
+    100% {
+        background-size: 105% 120%;
+        background-position: 0 0;
+        opacity: 0.7;
+    }
+}
+
+/* Сердечки-снежинки */
+.falling-heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 105, 180, 0.7); /* розовый с прозрачностью */
+    clip-path: polygon(
+            50% 0%, 61% 13%, 75% 13%, 84% 25%, 84% 37%,
+            75% 50%, 50% 75%, 25% 50%, 16% 37%, 16% 25%,
+            25% 13%, 39% 13%
+    );
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fallHeart linear infinite;
+}
+
+@keyframes fallHeart {
+    0% { transform: translate(0,0) rotate(0deg); opacity: 0.8; }
+    25% { transform: translate(5px, 50px) rotate(45deg); opacity: 0.7; }
+    50% { transform: translate(-5px, 100px) rotate(90deg); opacity: 0.6; }
+    75% { transform: translate(3px, 150px) rotate(135deg); opacity: 0.5; }
+    100% { transform: translate(0, 200px) rotate(180deg); opacity: 0; }
+}
+
+/* Смена времени суток */
+#castle {
+    background: linear-gradient(#87ceeb, #001920); /* утро → ночь */
+    transition: background 3s linear;
+}
+
+#neon-timer {
+    z-index: 10;
+    position: absolute;
+    top: 20px;
+    left: 35%;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: #e8b2ca;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow:
+            0 0 5px #e8b2ca,
+            0 0 10px #e8b2ca,
+            0 0 20px #e8b2ca,
+            0 0 40px #e8b2ca,
+            0 0 80px #e8b2ca;
+    animation: pulse 2s infinite alternate;
+    transition: color 3s linear, text-shadow 3s linear;
+}
+
+/* Пульсация неона */
+@keyframes pulse {
+    0% {
+        text-shadow:
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor,
+                0 0 80px currentColor;
+        transform: scale(1);
+    }
+    50% {
+        text-shadow:
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor,
+                0 0 80px currentColor,
+                0 0 120px currentColor;
+        transform: scale(1.05);
+    }
+    100% {
+        text-shadow:
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor,
+                0 0 80px currentColor;
+        transform: scale(1);
+    }
+}
+/* Звезды */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+/* Медиазапросы */
+@media (max-width: 1024px) {
+    #castle #table {
+        width: 39vw;
+        height: 39vw;
+    }
+}
+
+@media (max-width: 768px) {
+    #neon-timer {
+        font-size: 3rem;
+    }
+    #music-btn {
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+    #castle #table {
+        width: 50vw;
+        height: 50vw;
+        margin-left: 0.5rem;
+    }
+}
+
+@media (max-width: 426px) {
+    #neon-timer {
+        font-size: 3rem;
+    }
+    #music-btn {
+        padding: 6px 12px;
+        font-size: 16px;
+    }
+    #castle #table {
+        width: 80vw;
+        height: 80vw;
+        margin-left: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .text-container{
+        blockquote{
+            font-size: 20px;
+        }
+    }
+}
+
+@media (max-width: 376px) {
+    #neon-timer {
+        font-size: 2rem;
+    }
+    #music-btn {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    #castle #table {
+        width: 80vw;
+        height: 80vw;
+        margin-left: 3rem;
+        margin-top: 3rem;
+    }
+}
+
+@media (max-width: 321px) {
+    #neon-timer {
+        font-size: 2rem;
+    }
+    #music-btn {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    #castle #table {
+        width: 80vw;
+        height: 80vw;
+        margin-left: 4.5rem;
+        margin-top: 4.5rem;
+    }
+
+    .modal-content{
+        width: 260px;
+        p{
+            font-size: 20px;
+        }
+    }
+}
